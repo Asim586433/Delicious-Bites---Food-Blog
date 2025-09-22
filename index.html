@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delicious Bites | Food Blog</title>
+    <title>DeliciousBites | Food Blog</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -602,13 +602,105 @@
             cursor: pointer;
         }
         
+        /* Page Content */
+        .page-content {
+            min-height: 60vh;
+            padding: 2rem 0;
+        }
+        
+        /* Shop Grid */
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .product-content {
+            padding: 1.5rem;
+        }
+        
+        .product-price {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+        
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .blog-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        /* Policy Pages */
+        .policy-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .policy-section {
+            margin-bottom: 2rem;
+        }
+        
         /* Responsive Styles */
         @media (max-width: 1024px) {
-            .category-grid {
+            .category-grid, .shop-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .recipe-grid {
+            .recipe-grid, .blog-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
@@ -672,7 +764,9 @@
         
         @media (max-width: 576px) {
             .category-grid,
-            .recipe-grid {
+            .recipe-grid,
+            .shop-grid,
+            .blog-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -688,150 +782,475 @@
                 font-size: 1.8rem;
             }
         }
+        
+        /* Active Page Highlight */
+        .current-page {
+            color: var(--primary) !important;
+            font-weight: 600;
+        }
+        
+        /* Hidden class for page management */
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <!-- Header & Navigation -->
     <header>
         <div class="container header-container">
-            <a href="index.html" class="logo">Delicious<span>Bites</span></a>
+            <a href="#home" class="logo">Delicious<span>Bites</span></a>
             
             <div class="hamburger" id="hamburger">
                 <i class="fas fa-bars"></i>
             </div>
             
             <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#home" class="nav-link current-page">Home</a></li>
                 <li class="nav-item">
-                    <a href="recipes.html" class="nav-link">Recipes</a>
+                    <a href="#recipes" class="nav-link">Recipes</a>
                     <ul class="dropdown">
-                        <li><a href="#" class="dropdown-item">Breakfast</a></li>
-                        <li><a href="#" class="dropdown-item">Lunch</a></li>
-                        <li><a href="#" class="dropdown-item">Dinner</a></li>
-                        <li><a href="#" class="dropdown-item">Desserts</a></li>
+                        <li><a href="#breakfast" class="dropdown-item">Breakfast</a></li>
+                        <li><a href="#lunch" class="dropdown-item">Lunch</a></li>
+                        <li><a href="#dinner" class="dropdown-item">Dinner</a></li>
+                        <li><a href="#desserts" class="dropdown-item">Desserts</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a href="wine.html" class="nav-link">Wine</a></li>
-                <li class="nav-item"><a href="coffee.html" class="nav-link">Coffee</a></li>
-                <li class="nav-item"><a href="inspiration.html" class="nav-link">Inspiration</a></li>
-                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
-                <li class="nav-item"><a href="support.html" class="nav-link">Support</a></li>
+                <li class="nav-item"><a href="#wine" class="nav-link">Wine</a></li>
+                <li class="nav-item"><a href="#coffee" class="nav-link">Coffee</a></li>
+                <li class="nav-item"><a href="#inspiration" class="nav-link">Inspiration</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#shop" class="nav-link">Shop</a></li>
+                <li class="nav-item"><a href="#support" class="nav-link">Support</a></li>
             </ul>
         </div>
     </header>
 
-    <!-- Main Content (changes per page) -->
+    <!-- Main Content Area -->
     <main>
         <!-- Homepage Content -->
-        <section class="hero">
-            <div class="container hero-content">
-                <h1 class="hero-title">Discover the Art of Cooking</h1>
-                <p class="hero-subtitle">Explore delicious recipes, cooking tips, and food inspiration for every occasion</p>
-                <a href="recipes.html" class="btn">Explore Recipes</a>
-            </div>
+        <section id="home" class="page-content">
+            <section class="hero">
+                <div class="container hero-content">
+                    <h1 class="hero-title">Discover the Art of Cooking</h1>
+                    <p class="hero-subtitle">Explore delicious recipes, cooking tips, and food inspiration for every occasion</p>
+                    <a href="#recipes" class="btn">Explore Recipes</a>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Featured Categories</h2>
+                    <div class="category-grid">
+                        <div class="category-card">
+                            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Recipes" class="category-img">
+                            <div class="category-content">
+                                <h3>Recipes</h3>
+                                <p>Discover hundreds of delicious recipes for every meal</p>
+                                <a href="#recipes" class="btn">View All</a>
+                            </div>
+                        </div>
+                        
+                        <div class="category-card">
+                            <img src="https://images.unsplash.com/photo-1552590635-27c2c2128abf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Wine" class="category-img">
+                            <div class="category-content">
+                                <h3>Wine</h3>
+                                <p>Perfect wine pairings for your meals</p>
+                                <a href="#wine" class="btn">Explore</a>
+                            </div>
+                        </div>
+                        
+                        <div class="category-card">
+                            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Coffee" class="category-img">
+                            <div class="category-content">
+                                <h3>Coffee</h3>
+                                <p>Brew the perfect cup every time</p>
+                                <a href="#coffee" class="btn">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="category-card">
+                            <img src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Inspiration" class="category-img">
+                            <div class="category-content">
+                                <h3>Inspiration</h3>
+                                <p>Get inspired with our food stories and tips</p>
+                                <a href="#inspiration" class="btn">Get Inspired</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="recipes-section" class="section">
+                <div class="container">
+                    <h2 class="section-title">Latest Recipes</h2>
+                    <div class="recipe-grid">
+                        <div class="recipe-card">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mediterranean Salad" class="recipe-img">
+                            <div class="recipe-content">
+                                <h3>Mediterranean Salad</h3>
+                                <div class="recipe-meta">
+                                    <span><i class="far fa-clock"></i> 20 mins</span>
+                                    <span><i class="fas fa-user"></i> 4 servings</span>
+                                </div>
+                                <p>Fresh and healthy Mediterranean salad with feta cheese and olives</p>
+                                <a href="#recipe-single" class="btn btn-secondary">View Recipe</a>
+                            </div>
+                        </div>
+                        
+                        <div class="recipe-card">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pasta Carbonara" class="recipe-img">
+                            <div class="recipe-content">
+                                <h3>Pasta Carbonara</h3>
+                                <div class="recipe-meta">
+                                    <span><i class="far fa-clock"></i> 30 mins</span>
+                                    <span><i class="fas fa-user"></i> 2 servings</span>
+                                </div>
+                                <p>Creamy Italian pasta dish with pancetta and parmesan cheese</p>
+                                <a href="#recipe-single" class="btn btn-secondary">View Recipe</a>
+                            </div>
+                        </div>
+                        
+                        <div class="recipe-card">
+                            <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vegetable Stir Fry" class="recipe-img">
+                            <div class="recipe-content">
+                                <h3>Vegetable Stir Fry</h3>
+                                <div class="recipe-meta">
+                                    <span><i class="far fa-clock"></i> 25 mins</span>
+                                    <span><i class="fas fa-user"></i> 3 servings</span>
+                                </div>
+                                <p>Colorful vegetable stir fry with a savory soy sauce glaze</p>
+                                <a href="#recipe-single" class="btn btn-secondary">View Recipe</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="#recipes" class="btn">View All Recipes</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" style="background-color: #f5f5f5;">
+                <div class="container">
+                    <h2 class="section-title">Subscribe to Our Newsletter</h2>
+                    <p style="text-align: center; max-width: 600px; margin: 0 auto 2rem;">Get weekly recipes, cooking tips, and exclusive offers delivered straight to your inbox</p>
+                    <form class="newsletter-form" style="max-width: 500px; margin: 0 auto;">
+                        <input type="email" class="newsletter-input" placeholder="Your email address">
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </form>
+                </div>
+            </section>
         </section>
 
-        <section class="section">
+        <!-- Recipes Page -->
+        <section id="recipes" class="page-content hidden">
             <div class="container">
-                <h2 class="section-title">Featured Categories</h2>
-                <div class="category-grid">
-                    <div class="category-card">
-                        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Recipes" class="category-img">
-                        <div class="category-content">
-                            <h3>Recipes</h3>
-                            <p>Discover hundreds of delicious recipes for every meal</p>
-                            <a href="recipes.html" class="btn">View All</a>
+                <h1 class="section-title">Recipes</h1>
+                <div class="two-column">
+                    <div>
+                        <div class="recipe-grid" id="recipes-grid">
+                            <!-- Recipe cards will be populated by JavaScript -->
+                        </div>
+                        <div class="pagination">
+                            <a href="#" class="page-link active">1</a>
+                            <a href="#" class="page-link">2</a>
+                            <a href="#" class="page-link">3</a>
+                            <a href="#" class="page-link">Next</a>
                         </div>
                     </div>
-                    
-                    <div class="category-card">
-                        <img src="https://images.unsplash.com/photo-1552590635-27c2c2128abf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Wine" class="category-img">
-                        <div class="category-content">
-                            <h3>Wine</h3>
-                            <p>Perfect wine pairings for your meals</p>
-                            <a href="wine.html" class="btn">Explore</a>
+                    <div class="sidebar">
+                        <div class="filter-group">
+                            <h3 class="filter-title">Categories</h3>
+                            <ul class="filter-options">
+                                <li class="filter-option"><input type="checkbox" class="filter-checkbox"> Breakfast</li>
+                                <li class="filter-option"><input type="checkbox" class="filter-checkbox"> Lunch</li>
+                                <li class="filter-option"><input type="checkbox" class="filter-checkbox"> Dinner</li>
+                                <li class="filter-option"><input type="checkbox" class="filter-checkbox"> Desserts</li>
+                                <li class="filter-option"><input type="checkbox" class="filter-checkbox"> Vegetarian</li>
+                                <li class="filter-option"><input type="checkbox" class="filter-checkbox"> Vegan</li>
+                            </ul>
                         </div>
-                    </div>
-                    
-                    <div class="category-card">
-                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Coffee" class="category-img">
-                        <div class="category-content">
-                            <h3>Coffee</h3>
-                            <p>Brew the perfect cup every time</p>
-                            <a href="coffee.html" class="btn">Learn More</a>
-                        </div>
-                    </div>
-                    
-                    <div class="category-card">
-                        <img src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Inspiration" class="category-img">
-                        <div class="category-content">
-                            <h3>Inspiration</h3>
-                            <p>Get inspired with our food stories and tips</p>
-                            <a href="inspiration.html" class="btn">Get Inspired</a>
+                        <div class="filter-group">
+                            <h3 class="filter-title">Difficulty</h3>
+                            <ul class="filter-options">
+                                <li class="filter-option"><input type="checkbox" class="filter-checkbox"> Easy</li>
+                                <li class="filter-option"><input type="checkbox" class="filter-checkbox"> Medium</li>
+                                <li class="filter-option"><input type="checkbox" class="filter-checkbox"> Advanced</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section class="section">
+        
+        <!-- Wine Page -->
+        <section id="wine" class="page-content hidden">
             <div class="container">
-                <h2 class="section-title">Latest Recipes</h2>
-                <div class="recipe-grid">
-                    <div class="recipe-card">
-                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mediterranean Salad" class="recipe-img">
-                        <div class="recipe-content">
-                            <h3>Mediterranean Salad</h3>
-                            <div class="recipe-meta">
-                                <span><i class="far fa-clock"></i> 20 mins</span>
-                                <span><i class="fas fa-user"></i> 4 servings</span>
-                            </div>
-                            <p>Fresh and healthy Mediterranean salad with feta cheese and olives</p>
-                            <a href="recipe-single.html" class="btn btn-secondary">View Recipe</a>
-                        </div>
-                    </div>
-                    
-                    <div class="recipe-card">
-                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pasta Carbonara" class="recipe-img">
-                        <div class="recipe-content">
-                            <h3>Pasta Carbonara</h3>
-                            <div class="recipe-meta">
-                                <span><i class="far fa-clock"></i> 30 mins</span>
-                                <span><i class="fas fa-user"></i> 2 servings</span>
-                            </div>
-                            <p>Creamy Italian pasta dish with pancetta and parmesan cheese</p>
-                            <a href="recipe-single.html" class="btn btn-secondary">View Recipe</a>
-                        </div>
-                    </div>
-                    
-                    <div class="recipe-card">
-                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vegetable Stir Fry" class="recipe-img">
-                        <div class="recipe-content">
-                            <h3>Vegetable Stir Fry</h3>
-                            <div class="recipe-meta">
-                                <span><i class="far fa-clock"></i> 25 mins</span>
-                                <span><i class="fas fa-user"></i> 3 servings</span>
-                            </div>
-                            <p>Colorful vegetable stir fry with a savory soy sauce glaze</p>
-                            <a href="recipe-single.html" class="btn btn-secondary">View Recipe</a>
-                        </div>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 2rem;">
-                    <a href="recipes.html" class="btn">View All Recipes</a>
+                <h1 class="section-title">Wine Pairings</h1>
+                <div class="recipe-grid" id="wine-grid">
+                    <!-- Wine cards will be populated by JavaScript -->
                 </div>
             </div>
         </section>
-
-        <section class="section" style="background-color: #f5f5f5;">
+        
+        <!-- Coffee Page -->
+        <section id="coffee" class="page-content hidden">
             <div class="container">
-                <h2 class="section-title">Subscribe to Our Newsletter</h2>
-                <p style="text-align: center; max-width: 600px; margin: 0 auto 2rem;">Get weekly recipes, cooking tips, and exclusive offers delivered straight to your inbox</p>
-                <form class="newsletter-form" style="max-width: 500px; margin: 0 auto;">
-                    <input type="email" class="newsletter-input" placeholder="Your email address">
-                    <button type="submit" class="newsletter-btn">Subscribe</button>
-                </form>
+                <h1 class="section-title">Coffee Guides</h1>
+                <div class="recipe-grid" id="coffee-grid">
+                    <!-- Coffee cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Inspiration Page -->
+        <section id="inspiration" class="page-content hidden">
+            <div class="container">
+                <h1 class="section-title">Food Inspiration</h1>
+                <div class="blog-grid" id="blog-grid">
+                    <!-- Blog cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Page -->
+        <section id="about" class="page-content hidden">
+            <div class="container">
+                <h1 class="section-title">About DeliciousBites</h1>
+                <div class="two-column">
+                    <div>
+                        <p>Welcome to DeliciousBites, your ultimate destination for all things food! Founded in 2015 by food enthusiast Sarah Johnson, our blog has grown into a vibrant community of home cooks, food lovers, and culinary explorers.</p>
+                        <p>Our mission is to inspire people to cook delicious, wholesome meals and to explore the world of food with curiosity and joy. We believe that cooking should be accessible to everyone, regardless of skill level.</p>
+                        <h2>Our Team</h2>
+                        <div class="recipe-grid">
+                            <div class="recipe-card">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sarah Johnson" class="recipe-img">
+                                <div class="recipe-content">
+                                    <h3>Sarah Johnson</h3>
+                                    <p>Founder & Head Chef</p>
+                                </div>
+                            </div>
+                            <div class="recipe-card">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Michael Chen" class="recipe-img">
+                                <div class="recipe-content">
+                                    <h3>Michael Chen</h3>
+                                    <p>Recipe Developer</p>
+                                </div>
+                            </div>
+                            <div class="recipe-card">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Emma Rodriguez" class="recipe-img">
+                                <div class="recipe-content">
+                                    <h3>Emma Rodriguez</h3>
+                                    <p>Food Photographer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar">
+                        <h3>Our Values</h3>
+                        <ul>
+                            <li>Quality ingredients matter</li>
+                            <li>Cooking should be fun, not stressful</li>
+                            <li>Food brings people together</li>
+                            <li>There's always something new to learn</li>
+                        </ul>
+                        <h3>Contact Information</h3>
+                        <p>Email: hello@deliciousbites.com</p>
+                        <p>Phone: (555) 123-4567</p>
+                        <p>Address: 123 Foodie Street, Culinary City</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Shop Page -->
+        <section id="shop" class="page-content hidden">
+            <div class="container">
+                <h1 class="section-title">Shop Kitchen Essentials</h1>
+                <div class="shop-grid" id="shop-grid">
+                    <!-- Product cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Support Page -->
+        <section id="support" class="page-content hidden">
+            <div class="container">
+                <h1 class="section-title">Support & Contact</h1>
+                <div class="two-column">
+                    <div>
+                        <h2>Contact Us</h2>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Subject</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-control" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="sidebar">
+                        <h2>FAQ</h2>
+                        <div class="faq-item">
+                            <div class="faq-question">How can I submit my own recipe?</div>
+                            <p>We love featuring recipes from our community! Please email your recipe to submissions@deliciousbites.com.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Do you offer cooking classes?</div>
+                            <p>Yes! We offer virtual cooking classes monthly. Check our events page for the current schedule.</p>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Can I use your recipes for my restaurant?</div>
+                            <p>Our recipes are for personal use. For commercial use, please contact us for licensing information.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Single Recipe Page -->
+        <section id="recipe-single" class="page-content hidden">
+            <div class="container">
+                <div class="recipe-header">
+                    <h1>Mediterranean Salad</h1>
+                    <div class="recipe-meta">
+                        <span><i class="far fa-clock"></i> 20 mins prep time</span>
+                        <span><i class="fas fa-user"></i> 4 servings</span>
+                        <span><i class="fas fa-utensils"></i> Easy difficulty</span>
+                    </div>
+                </div>
+                
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Mediterranean Salad" class="recipe-hero-img">
+                
+                <div class="recipe-details">
+                    <div class="detail-card">
+                        <div class="detail-icon"><i class="far fa-clock"></i></div>
+                        <div>Prep Time</div>
+                        <div>15 mins</div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon"><i class="fas fa-clock"></i></div>
+                        <div>Cook Time</div>
+                        <div>5 mins</div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon"><i class="fas fa-user"></i></div>
+                        <div>Servings</div>
+                        <div>4 people</div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon"><i class="fas fa-chart-line"></i></div>
+                        <div>Calories</div>
+                        <div>280/serving</div>
+                    </div>
+                </div>
+                
+                <div class="two-column">
+                    <div>
+                        <h2>Ingredients</h2>
+                        <ul class="ingredients-list">
+                            <li class="ingredient-item">4 cups mixed greens</li>
+                            <li class="ingredient-item">1 cucumber, sliced</li>
+                            <li class="ingredient-item">1 cup cherry tomatoes, halved</li>
+                            <li class="ingredient-item">1/2 red onion, thinly sliced</li>
+                            <li class="ingredient-item">1/2 cup Kalamata olives</li>
+                            <li class="ingredient-item">4 oz feta cheese, crumbled</li>
+                            <li class="ingredient-item">2 tbsp extra virgin olive oil</li>
+                            <li class="ingredient-item">1 tbsp red wine vinegar</li>
+                            <li class="ingredient-item">1 tsp dried oregano</li>
+                            <li class="ingredient-item">Salt and pepper to taste</li>
+                        </ul>
+                        
+                        <h2>Instructions</h2>
+                        <ol class="instructions-list">
+                            <li class="instruction-item">Wash and dry the mixed greens, then place them in a large salad bowl.</li>
+                            <li class="instruction-item">Add the cucumber, cherry tomatoes, red onion, and olives to the bowl.</li>
+                            <li class="instruction-item">In a small bowl, whisk together the olive oil, red wine vinegar, oregano, salt, and pepper.</li>
+                            <li class="instruction-item">Pour the dressing over the salad and toss gently to combine.</li>
+                            <li class="instruction-item">Sprinkle the crumbled feta cheese over the top of the salad.</li>
+                            <li class="instruction-item">Serve immediately or refrigerate for up to 2 hours before serving.</li>
+                        </ol>
+                        
+                        <div class="social-share">
+                            <span>Share this recipe:</span>
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar">
+                        <h3>Nutrition Facts</h3>
+                        <p>Per serving:</p>
+                        <ul>
+                            <li>Calories: 280</li>
+                            <li>Fat: 22g</li>
+                            <li>Carbohydrates: 15g</li>
+                            <li>Protein: 8g</li>
+                        </ul>
+                        
+                        <h3>Tips & Variations</h3>
+                        <p>Add grilled chicken or shrimp for a protein boost.</p>
+                        <p>Substitute goat cheese for feta if preferred.</p>
+                        <p>Add a tablespoon of lemon juice for extra freshness.</p>
+                        
+                        <button class="btn" style="width: 100%; margin-top: 1rem;"><i class="fas fa-print"></i> Print Recipe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Privacy Policy Page -->
+        <section id="privacy-policy" class="page-content hidden">
+            <div class="container">
+                <h1 class="section-title">Privacy Policy</h1>
+                <div class="policy-content">
+                    <div class="policy-section">
+                        <h2>Information We Collect</h2>
+                        <p>We collect information you provide directly to us, such as when you create an account, subscribe to our newsletter, or contact us for support.</p>
+                    </div>
+                    <div class="policy-section">
+                        <h2>How We Use Your Information</h2>
+                        <p>We use the information we collect to provide, maintain, and improve our services, to communicate with you, and to personalize your experience.</p>
+                    </div>
+                    <div class="policy-section">
+                        <h2>Information Sharing</h2>
+                        <p>We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties without your consent.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Terms of Service Page -->
+        <section id="terms-of-service" class="page-content hidden">
+            <div class="container">
+                <h1 class="section-title">Terms of Service</h1>
+                <div class="policy-content">
+                    <div class="policy-section">
+                        <h2>Acceptance of Terms</h2>
+                        <p>By accessing and using DeliciousBites, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                    </div>
+                    <div class="policy-section">
+                        <h2>Use License</h2>
+                        <p>Permission is granted to temporarily use the materials on DeliciousBites for personal, non-commercial transitory viewing only.</p>
+                    </div>
+                    <div class="policy-section">
+                        <h2>User Content</h2>
+                        <p>You retain ownership of any content you submit, but grant us a license to use, display, and distribute that content on our platform.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -854,21 +1273,21 @@
                 <div>
                     <h3 class="footer-title">Explore</h3>
                     <ul class="footer-links">
-                        <li><a href="recipes.html" class="footer-link">Recipes</a></li>
-                        <li><a href="wine.html" class="footer-link">Wine Pairings</a></li>
-                        <li><a href="coffee.html" class="footer-link">Coffee Guides</a></li>
-                        <li><a href="inspiration.html" class="footer-link">Inspiration</a></li>
-                        <li><a href="about.html" class="footer-link">About Us</a></li>
+                        <li><a href="#recipes" class="footer-link">Recipes</a></li>
+                        <li><a href="#wine" class="footer-link">Wine Pairings</a></li>
+                        <li><a href="#coffee" class="footer-link">Coffee Guides</a></li>
+                        <li><a href="#inspiration" class="footer-link">Inspiration</a></li>
+                        <li><a href="#about" class="footer-link">About Us</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h3 class="footer-title">Support</h3>
                     <ul class="footer-links">
-                        <li><a href="support.html" class="footer-link">Contact Us</a></li>
-                        <li><a href="support.html" class="footer-link">FAQ</a></li>
-                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
-                        <li><a href="#" class="footer-link">Terms of Service</a></li>
+                        <li><a href="#support" class="footer-link">Contact Us</a></li>
+                        <li><a href="#support" class="footer-link">FAQ</a></li>
+                        <li><a href="#privacy-policy" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="#terms-of-service" class="footer-link">Terms of Service</a></li>
                     </ul>
                 </div>
                 
@@ -883,7 +1302,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 DeliciousBites. All rights reserved.</p>
+                <p>&copy; 2025 DeliciousBites. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -935,6 +1354,311 @@
         window.addEventListener('click', (e) => {
             if (e.target === document.getElementById('newsletter-modal')) {
                 document.getElementById('newsletter-modal').style.display = 'none';
+            }
+        });
+        
+        // Page Navigation System
+        const pages = document.querySelectorAll('.page-content');
+        
+        // Function to show a specific page
+        function showPage(pageId) {
+            // Hide all pages
+            pages.forEach(page => {
+                page.classList.add('hidden');
+            });
+            
+            // Show the requested page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+            } else {
+                // Default to homepage if page not found
+                document.getElementById('home').classList.remove('hidden');
+            }
+            
+            // Update active navigation link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('current-page');
+            });
+            
+            const currentLink = document.querySelector(`.nav-link[href="#${pageId}"]`);
+            if (currentLink) {
+                currentLink.classList.add('current-page');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Handle navigation clicks
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                
+                // If it's an internal page link (starts with #)
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    
+                    // Extract page ID from href
+                    const pageId = href.substring(1);
+                    
+                    // Update URL without reloading
+                    window.history.pushState({}, '', `#${pageId}`);
+                    
+                    // Show the corresponding page
+                    showPage(pageId);
+                }
+            });
+        });
+        
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', () => {
+            const hash = window.location.hash.substring(1) || 'home';
+            showPage(hash);
+        });
+        
+        // Initialize page based on current URL hash
+        const hash = window.location.hash.substring(1) || 'home';
+        showPage(hash);
+        
+        // Dummy data for dynamic content
+        const recipes = [
+            {
+                title: "Avocado Toast with Poached Egg",
+                image: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                time: "15 mins",
+                servings: "2",
+                description: "Creamy avocado on toasted artisan bread topped with a perfectly poached egg."
+            },
+            {
+                title: "Berry Smoothie Bowl",
+                image: "https://images.unsplash.com/photo-1497534446932-c925b458314e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                time: "10 mins",
+                servings: "1",
+                description: "A refreshing and nutritious smoothie bowl topped with fresh berries and granola."
+            },
+            {
+                title: "Mushroom Risotto",
+                image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                time: "45 mins",
+                servings: "4",
+                description: "Creamy arborio rice cooked with wild mushrooms and parmesan cheese."
+            },
+            {
+                title: "Chocolate Lava Cake",
+                image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                time: "30 mins",
+                servings: "4",
+                description: "Decadent chocolate cakes with a molten center, perfect for special occasions."
+            },
+            {
+                title: "Greek Gyros",
+                image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                time: "40 mins",
+                servings: "4",
+                description: "Traditional Greek street food with seasoned meat, vegetables, and tzatziki sauce."
+            },
+            {
+                title: "Caprese Salad",
+                image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                time: "10 mins",
+                servings: "4",
+                description: "Simple Italian salad with fresh mozzarella, tomatoes, and basil."
+            }
+        ];
+        
+        const wines = [
+            {
+                title: "Sauvignon Blanc",
+                image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "Crisp and refreshing white wine with citrus notes."
+            },
+            {
+                title: "Pinot Noir",
+                image: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "Light-bodied red wine with fruity aromas."
+            },
+            {
+                title: "Chardonnay",
+                image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "Full-bodied white wine with buttery notes."
+            }
+        ];
+        
+        const coffees = [
+            {
+                title: "Espresso Guide",
+                image: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "Learn how to make the perfect espresso at home."
+            },
+            {
+                title: "French Press",
+                image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "Step-by-step guide to French press coffee brewing."
+            },
+            {
+                title: "Cold Brew",
+                image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "How to make smooth cold brew coffee at home."
+            }
+        ];
+        
+        const blogPosts = [
+            {
+                title: "10 Kitchen Tools Every Home Cook Needs",
+                image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                date: "March 15, 2025",
+                description: "Essential tools that will make your cooking experience easier and more enjoyable."
+            },
+            {
+                title: "Seasonal Eating: Spring Vegetables Guide",
+                image: "https://images.unsplash.com/photo-1464454709131-ffd692591ee5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                date: "March 10, 2025",
+                description: "Discover the best spring vegetables and how to cook them."
+            },
+            {
+                title: "The Art of Food Plating",
+                image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                date: "March 5, 2025",
+                description: "Simple techniques to make your dishes look restaurant-quality."
+            }
+        ];
+        
+        const products = [
+            {
+                title: "Chef's Knife",
+                image: "https://images.unsplash.com/photo-1594736797933-d0b4ec4d7d72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                price: "$89.99",
+                description: "Professional 8-inch chef's knife for all your kitchen needs."
+            },
+            {
+                title: "Cast Iron Skillet",
+                image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                price: "$45.99",
+                description: "Versatile cast iron skillet that lasts a lifetime."
+            },
+            {
+                title: "Digital Kitchen Scale",
+                image: "https://images.unsplash.com/photo-1587334984005-5b62ce4b919d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                price: "$24.99",
+                description: "Precise measurements for perfect baking results."
+            },
+            {
+                title: "Immersion Blender",
+                image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                price: "$39.99",
+                description: "Handy tool for soups, sauces, and smoothies."
+            }
+        ];
+        
+        // Function to populate recipe grid
+        function populateRecipeGrid(container, items) {
+            container.innerHTML = '';
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'recipe-card';
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="recipe-img">
+                    <div class="recipe-content">
+                        <h3>${item.title}</h3>
+                        ${item.time ? `<div class="recipe-meta">
+                            <span><i class="far fa-clock"></i> ${item.time}</span>
+                            <span><i class="fas fa-user"></i> ${item.servings}</span>
+                        </div>` : ''}
+                        <p>${item.description}</p>
+                        <a href="#recipe-single" class="btn btn-secondary">View ${item.time ? 'Recipe' : 'Details'}</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        
+        // Function to populate product grid
+        function populateProductGrid(container, items) {
+            container.innerHTML = '';
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="product-img">
+                    <div class="product-content">
+                        <h3>${item.title}</h3>
+                        <div class="product-price">${item.price}</div>
+                        <p>${item.description}</p>
+                        <button class="btn btn-accent">Add to Cart</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        
+        // Function to populate blog grid
+        function populateBlogGrid(container, items) {
+            container.innerHTML = '';
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'blog-card';
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="blog-img">
+                    <div class="blog-content">
+                        <h3>${item.title}</h3>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> ${item.date}</span>
+                        </div>
+                        <p>${item.description}</p>
+                        <a href="#" class="btn btn-secondary">Read More</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        
+        // Populate pages when they are shown
+        document.addEventListener('DOMContentLoaded', () => {
+            // Recipes page
+            const recipesGrid = document.getElementById('recipes-grid');
+            if (recipesGrid) {
+                populateRecipeGrid(recipesGrid, recipes);
+            }
+            
+            // Wine page
+            const wineGrid = document.getElementById('wine-grid');
+            if (wineGrid) {
+                populateRecipeGrid(wineGrid, wines);
+            }
+            
+            // Coffee page
+            const coffeeGrid = document.getElementById('coffee-grid');
+            if (coffeeGrid) {
+                populateRecipeGrid(coffeeGrid, coffees);
+            }
+            
+            // Inspiration page
+            const blogGrid = document.getElementById('blog-grid');
+            if (blogGrid) {
+                populateBlogGrid(blogGrid, blogPosts);
+            }
+            
+            // Shop page
+            const shopGrid = document.getElementById('shop-grid');
+            if (shopGrid) {
+                populateProductGrid(shopGrid, products);
+            }
+        });
+        
+        // Handle form submissions
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your submission! This is a demo site, so no data was actually sent.');
+            });
+        });
+        
+        // Add to cart functionality
+        document.addEventListener('click', (e) => {
+            if (e.target && e.target.textContent === 'Add to Cart') {
+                e.preventDefault();
+                alert('Item added to cart! This is a demo site, so no actual purchase will be made.');
             }
         });
     </script>
